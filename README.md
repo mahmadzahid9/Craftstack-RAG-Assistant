@@ -13,14 +13,18 @@ A modern **Retrieval-Augmented Generation (RAG)** chatbot built with **Flask** t
 - 💬 Modern ChatGPT-inspired user interface
 - ⚡ Fast Flask backend
 - 🎨 Responsive glassmorphism design
+<<<<<<< HEAD
 - 🌐 Live internet search integration (DuckDuckGo)
 - 🪙 Live market rates integration (Gold price and Exchange Rates)
+=======
+>>>>>>> 4d52048358528884a01ac7ce28c94f927d0fdd3d
 
 ---
 
 ## Tech Stack
 
 ### Backend
+<<<<<<< HEAD
 - Flask (Web Server)
 - ChromaDB (Vector Database)
 - Sentence Transformers (Embedding Generation)
@@ -28,6 +32,13 @@ A modern **Retrieval-Augmented Generation (RAG)** chatbot built with **Flask** t
 - PyPDF (PDF Parsing)
 - DuckDuckGo Search (Web Search API)
 - Requests
+=======
+- Flask
+- LangChain
+- ChromaDB
+- Sentence Transformers
+- Hugging Face Inference API
+>>>>>>> 4d52048358528884a01ac7ce28c94f927d0fdd3d
 
 ### Frontend
 - HTML
@@ -43,6 +54,7 @@ A modern **Retrieval-Augmented Generation (RAG)** chatbot built with **Flask** t
 CraftStack-RAG-Assistant/
 │
 ├── app.py
+<<<<<<< HEAD
 ├── ingest.py
 ├── rag.py
 ├── search.py
@@ -56,6 +68,14 @@ CraftStack-RAG-Assistant/
 │   └── style.css
 ├── documents/
 ├── vector_db/
+=======
+├── requirements.txt
+├── .env
+├── templates/
+├── static/
+├── uploads/
+├── vectordb/
+>>>>>>> 4d52048358528884a01ac7ce28c94f927d0fdd3d
 └── README.md
 ```
 
@@ -99,7 +119,11 @@ http://127.0.0.1:5000
 ## Usage
 
 1. Launch the application.
+<<<<<<< HEAD
 2. Upload a PDF document using the "+" button or header button.
+=======
+2. Upload a PDF document.
+>>>>>>> 4d52048358528884a01ac7ce28c94f927d0fdd3d
 3. Wait for indexing to complete.
 4. Ask questions related to the uploaded document.
 5. The assistant retrieves relevant context and generates accurate responses.
