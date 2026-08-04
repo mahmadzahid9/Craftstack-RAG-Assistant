@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+.env.*
+
+# Vector database storage
+vector_db/
+
+# Local logs
+*.log
+server.log
+
+# User uploaded documents (except default templates if necessary)
+documents/24I-5643_AdmitCard_3.pdf
+documents/24I-5643_AdmitCard_5.pdf
+documents/DLD_notes_Sessional_2_1.pdf

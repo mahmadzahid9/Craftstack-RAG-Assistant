@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CraftStack AI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+
+body{
+    font-family:Inter,sans-serif;
+    background:#050816;
+    overflow:hidden;
+}
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2f3b63;
+    border-radius:20px;
+}
+
+.glass{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.message{
+    animation:fade .35s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+textarea{
+resize:none;
+outline:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="fixed inset-0 overflow-hidden">
+
+<div id="blob1" class="absolute w-[600px] h-[600px] bg-blue-500 rounded-full blur-[180px] opacity-20"></div>
+
+<div id="blob2" class="absolute right-0 bottom-0 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[180px] opacity-20"></div>
+
+</div>
+
+<div class="relative flex h-screen">
+
+<!-- Sidebar -->
+
+<div class="glass w-80 border-r border-white/10 flex flex-col">
+
+<div class="p-8">
+
+<div class="flex items-center gap-4">
+
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white">
+Q
+</div>
+
+<div>
+<h1 class="text-white text-xl font-bold">CraftStack AI</h1>
+<p class="text-gray-400">Flask Assistant</p>
+</div>
+
+</div>
+
+<button class="mt-8 w-full rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-white font-semibold">
++ New Chat
+</button>
+
+</div>
+
+<div class="flex-1 overflow-y-auto px-5">
+
+<p class="text-gray-500 text-sm mb-4">
+Recent Chats
+</p>
+
+<div class="space-y-3">
+
+<div class="glass rounded-xl p-4 text-white">
+Artificial Intelligence
+</div>
+
+<div class="glass rounded-xl p-4 text-white">
+Python Help
+</div>
+
+<div class="glass rounded-xl p-4 text-white">
+Machine Learning
+</div>
+
+</div>
+
+</div>
+
+<div class="p-6 border-t border-white/10">
+
+<div class="glass rounded-2xl p-4 flex items-center gap-4">
+
+<div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+M
+</div>
+
+<div>
+<h2 class="text-white">Muhammad</h2>
+<p class="text-gray-400 text-sm">Online</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Main -->
+
+<div class="flex-1 flex flex-col">
+
+<!-- Header -->
+
+<div class="glass h-24 flex items-center justify-between px-10">
+
+<div>
+
+<h1 class="text-2xl text-white font-bold">
+CraftStack Assistant
+</h1>
+
+<p class="text-gray-400">
+Ready to help you
+</p>
+
+</div>
+
+<div class="flex items-center gap-4">
+
+<input
+type="file"
+id="pdfFile"
+accept=".pdf"
+class="hidden">
+
+<button
+onclick="document.getElementById('pdfFile').click()"
+class="bg-blue-600 px-5 py-3 rounded-xl text-white font-bold">
+📄 Upload PDF
+
+</button>
+
+<div class="flex items-center gap-2">
+
+<div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+
+<span class="text-gray-300">
+Connected
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Chat -->
+
+<div id="chat-box" class="flex-1 overflow-y-auto px-10 py-10 space-y-8">
+
+<div class="text-center mt-28">
+
+<div class="text-7xl">
+🤖
+</div>
+
+<h1 class="text-white text-5xl font-bold mt-8">
+Welcome back
+</h1>
+
+<p class="text-gray-400 text-xl mt-4">
+How can I help you today?
+</p>
+
+</div>
+
+</div>
+
+<!-- Input -->
+
+<div class="p-8">
+
+<div class="glass rounded-3xl p-4 flex items-end gap-4">
+
+<div class="relative flex-shrink-0">
+<button
+id="attachBtn"
+type="button"
+class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 text-white text-2xl flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+title="Attach file">
++
+</button>
+
+<!-- Floating Menu -->
+<div
+id="attachMenu"
+class="absolute bottom-20 left-0 hidden glass rounded-2xl p-2 w-48 shadow-2xl border border-white/10 flex flex-col gap-1 z-50">
+<button
+id="menuUploadBtn"
+type="button"
+class="flex items-center gap-2 px-4 py-3 rounded-xl text-white text-sm hover:bg-white/10 transition-colors text-left w-full">
+📄 Upload PDF
+</button>
+<button
+id="menuCancelBtn"
+type="button"
+class="flex items-center gap-2 px-4 py-3 rounded-xl text-red-400 text-sm hover:bg-white/10 transition-colors text-left w-full">
+❌ Cancel
+</button>
+</div>
+</div>
+
+<textarea
+id="message"
+rows="1"
+placeholder="Ask anything..."
+class="flex-1 bg-transparent text-white text-lg mb-4"></textarea>
+
+<button
+onclick="sendMessage()"
+class="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl flex-shrink-0">
+
+↑
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+gsap.to("#blob1",{
+x:250,
+y:120,
+duration:10,
+repeat:-1,
+yoyo:true,
+ease:"sine.inOut"
+});
+
+gsap.to("#blob2",{
+x:-220,
+y:-180,
+duration:13,
+repeat:-1,
+yoyo:true,
+ease:"sine.inOut"
+});
+
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
